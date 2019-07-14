@@ -23,7 +23,7 @@ import { CreditsComponent } from './views/dash/credits/credits.component';
 import { ServiceComponent } from './views/pages/service/service.component';
 import { GaleryServComponent } from './views/pages/galery-serv/galery-serv.component';
 import { CategoryServComponent } from './views/pages/category-serv/category-serv.component';
-import { DashhomeComponent } from './views/dash/dashhome/dashhome.component';
+import { DashHomeComponent } from './views/dash/dash-home/dash-home.component';
 
 
 const routes: Routes = [
@@ -74,56 +74,68 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashhomeComponent,
+        component: DashHomeComponent,
         outlet: 'dashboard-router'
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        outlet: 'dashboard-router'
       },
       {
         path: 'recovery',
-        component: RecoveryComponent
+        component: RecoveryComponent,
+        outlet: 'dashboard-router'
       },
       {
-          path: 'orders',
-          component: OrdersComponent
+        path: 'orders',
+        component: OrdersComponent,
+        outlet: 'dashboard-router'
       },
       {
-          path: 'adresses',
-          component: AdressesComponent
+        path: 'adresses',
+        component: AdressesComponent,
+        outlet: 'dashboard-router'
       },
       {
-          path: 'cards',
-          component: CardsComponent
+        path: 'cards',
+        component: CardsComponent,
+        outlet: 'dashboard-router'
       },
       {
-          path: 'credits',
-          component: CreditsComponent
+        path: 'credits',
+        component: CreditsComponent,
+        outlet: 'dashboard-router'
       },
       {
-          path: 'service',
-          component: ServiceComponent
+        path: 'service',
+        component: ServiceComponent,
+        outlet: 'dashboard-router'
       },
       {
-          path: 'galery-serv',
-          component: GaleryServComponent
+        path: 'galery-serv',
+        component: GaleryServComponent,
+        outlet: 'dashboard-router'
       },
       {
-          path: 'category-serv',
-          component: CategoryServComponent
+        path: 'category-serv',
+        component: CategoryServComponent,
+        outlet: 'dashboard-router'
       },
       {
-          path: 'cart',
-          component: CartComponent
+        path: 'cart',
+        component: CartComponent,
+        outlet: 'dashboard-router'
       },
       {
-          path: 'checkout-custom',
-          component: CheckoutCustomComponent
+        path: 'checkout-custom',
+        component: CheckoutCustomComponent,
+        outlet: 'dashboard-router'
       },
       {
-          path: 'checkout-confirm',
-          component: CheckoutConfirmComponent
+        path: 'checkout-confirm',
+        component: CheckoutConfirmComponent,
+        outlet: 'dashboard-router'
       }
     ]
   }

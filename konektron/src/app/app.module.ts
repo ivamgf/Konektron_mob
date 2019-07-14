@@ -31,7 +31,7 @@ import { CheckoutCustomComponent } from './views/carts/checkout-custom/checkout-
 import { CategoryServComponent } from './views/pages/category-serv/category-serv.component';
 import { GaleryServComponent } from './views/pages/galery-serv/galery-serv.component';
 import { ServiceComponent } from './views/pages/service/service.component';
-import { DashhomeComponent } from './views/dash/dashhome/dashhome.component';
+import { DashHomeComponent } from './views/dash/dash-home/dash-home.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,7 @@ import { DashhomeComponent } from './views/dash/dashhome/dashhome.component';
     CategoryServComponent,
     GaleryServComponent,
     ServiceComponent,
-    DashhomeComponent
+    DashHomeComponent
   ],
   imports: [
     CommonModule,

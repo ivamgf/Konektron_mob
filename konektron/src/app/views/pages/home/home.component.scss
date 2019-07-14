@@ -1,0 +1,33 @@
+.style-home {
+    margin-top: 25%;
+    width: 50%;
+}
+.style-spinner {
+  width: 50px;
+  height: 50px;
+  margin-left: 24%;
+  margin-bottom: 20%;
+}
+.spinner-border {
+  display: inline-block;
+  width: 5rem;
+  height: 5rem;
+  vertical-align: text-bottom;
+  border: .65em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border .75s linear infinite;
+  animation: spinner-border .75s linear infinite;
+  }
+@media only screen and (min-width: 557px) and (max-width: 992px){
+  .style-spinner {
+    width: 90px;
+    height: 90px;
+    margin-left: 24%;
+    margin-bottom: 20%;
+  }
+  .style-home {
+    margin-top: 25%;
+    width: 20%;
+  }
+}
