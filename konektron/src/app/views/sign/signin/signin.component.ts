@@ -15,7 +15,7 @@ export class SigninComponent implements OnInit {
     password: ['', [Validators.required, Validators.nullValidator]],
     remember: ['']
   });
-  
+
   public formLogin: any[] = [];
   public email: string;
   public password: string;
@@ -67,10 +67,7 @@ export class SigninComponent implements OnInit {
     if ( this.password.length >= 6 ) {
       if ( this.email !== '' && this.password !== '' ) {
         localStorage.setItem( 'auth', 'true' );
-        this.router.navigate(['/home']);
-        $(document).ready(function() {
-          location.reload();
-        });
+        this.router.navigate(['/dashboard']);
         if ( this.remember === true ) {
           localStorage.setItem( 'remember', 'true' );
           localStorage.setItem( 'user', this.encodeEmail );
@@ -83,26 +80,41 @@ export class SigninComponent implements OnInit {
           document.getElementById('alert1').style.visibility = 'visible';
           document.getElementById('alert1').style.position = 'relative';
           $(document).ready(function() {
-            $('#alert1').fadeOut(10000);
-            $('#alert1').load('div');
+            $('#alert1').fadeOut(4000);
           });
+          setTimeout(() => {
+            $(document).ready(function() {
+              $('#alert1').load('div');
+              location.reload();
+            });
+          }, 5000);
         }
         if ( this.password === '' ) {
           document.getElementById('alert2').style.visibility = 'visible';
           document.getElementById('alert2').style.position = 'relative';
           $(document).ready(function() {
-            $('#alert2').fadeOut(10000);
-            $('#alert2').load('div');
+            $('#alert2').fadeOut(4000);
           });
+          setTimeout(() => {
+            $(document).ready(function() {
+              $('#alert2').load('div');
+              location.reload();
+            });
+          }, 5000);
         }
       }
     } else {
       document.getElementById('alert3').style.visibility = 'visible';
       document.getElementById('alert3').style.position = 'relative';
       $(document).ready(function() {
-        $('#alert3').fadeOut(10000);
-        $('#alert3').load('div');
+        $('#alert3').fadeOut(4000);
       });
+      setTimeout(() => {
+        $(document).ready(function() {
+          $('#alert3').load('div');
+          location.reload();
+        });
+      }, 5000);
     }
   }
 
