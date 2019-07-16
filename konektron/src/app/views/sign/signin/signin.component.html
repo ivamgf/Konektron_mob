@@ -1,4 +1,4 @@
-<section>
+<section id="log">
 <div class="card col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 style-card-login">
 
   <img src="/assets/images/logo-konektron.png" class="style-logo container mx-auto" style="width:120px">
@@ -36,7 +36,7 @@
 
       <div id="alert3" class="alert alert-danger alert-dismissible style-alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Erro!</strong> O campo de senha deve ter de 6 à 8 dígitos!
+        <strong>Erro!</strong> Os campos de e-mail e senha não podem estar vazios!
       </div>
 
       <div class="form-check checkbox">
@@ -52,8 +52,10 @@
       </div>
 
     </form>
-    <button type="button" class="btn btn-primary style-btn-submit" (click)="login()">Enviar</button>
+    <div id="btn">
+      <button type="button" class="btn btn-primary style-btn-submit" (click)="login()">Enviar</button>
+    </div>
   </div>
 
-</div>  
+</div>
 </section>
