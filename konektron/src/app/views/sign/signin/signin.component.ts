@@ -75,34 +75,33 @@ export class SigninComponent implements OnInit {
           localStorage.setItem( 'remember', 'false' );
         }
       } else {
-        if ( this.email === '' || this.password === '' ) {
-          document.getElementById('alert1').style.visibility = 'visible';
-          document.getElementById('alert1').style.position = 'relative';
-          $(document).ready(() => {
-            $('#alert1').fadeOut(4000);
-          });
-          setTimeout(() => {
-            $(document).ready(() => {
-              $('#alert1').load('div');
-              location.reload();
-            });
-          }, 4000);
-        }
+        this.emailValid();
       }
     } else {
-      document.getElementById('alert2').style.visibility = 'visible';
-      document.getElementById('alert2').style.position = 'relative';
-      $(document).ready(() => {
-        $('#alert2').fadeOut(4000);
-      });
-      setTimeout(() => {
-        $(document).ready(() => {
-          $('#alert2').load('div');
-          location.reload();
-        });
-      }, 4000);
+      this.passValid();
     }
   }
-
+  emailValid() {
+    if ( this.email === '' ) {
+      document.getElementById('alert1').style.visibility = 'visible';
+      document.getElementById('alert1').style.position = 'relative';
+      setTimeout(() => {
+        $(document).ready(() => {
+          $('#alert1').fadeOut(3000);
+          location.reload();
+        });
+      }, 3000);
+    }
+  }
+  passValid() {
+    document.getElementById('alert2').style.visibility = 'visible';
+    document.getElementById('alert2').style.position = 'relative';
+    setTimeout(() => {
+      $(document).ready(() => {
+        $('#alert2').fadeOut(3000);
+        location.reload();
+      });
+    }, 3000);
+  }
 }
 
