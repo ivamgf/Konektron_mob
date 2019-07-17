@@ -36,7 +36,6 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
     document.getElementById('alert1').style.visibility = 'hidden';
     document.getElementById('alert2').style.visibility = 'hidden';
-    document.getElementById('alert3').style.visibility = 'hidden';
 
     this.statusRemember = localStorage.getItem('remember');
     if ( this.statusRemember === 'true' ) {
@@ -76,45 +75,32 @@ export class SigninComponent implements OnInit {
           localStorage.setItem( 'remember', 'false' );
         }
       } else {
-        if ( this.email === '' ) {
+        if ( this.email === '' || this.password === '' ) {
           document.getElementById('alert1').style.visibility = 'visible';
           document.getElementById('alert1').style.position = 'relative';
-          $(document).ready(function() {
+          $(document).ready(() => {
             $('#alert1').fadeOut(4000);
           });
           setTimeout(() => {
-            $(document).ready(function() {
+            $(document).ready(() => {
               $('#alert1').load('div');
               location.reload();
             });
-          }, 5000);
-        }
-        if ( this.password === '' ) {
-          document.getElementById('alert2').style.visibility = 'visible';
-          document.getElementById('alert2').style.position = 'relative';
-          $(document).ready(function() {
-            $('#alert2').fadeOut(4000);
-          });
-          setTimeout(() => {
-            $(document).ready(function() {
-              $('#alert2').load('div');
-              location.reload();
-            });
-          }, 5000);
+          }, 4000);
         }
       }
     } else {
-      document.getElementById('alert3').style.visibility = 'visible';
-      document.getElementById('alert3').style.position = 'relative';
-      $(document).ready(function() {
-        $('#alert3').fadeOut(4000);
+      document.getElementById('alert2').style.visibility = 'visible';
+      document.getElementById('alert2').style.position = 'relative';
+      $(document).ready(() => {
+        $('#alert2').fadeOut(4000);
       });
       setTimeout(() => {
-        $(document).ready(function() {
-          $('#alert3').load('div');
+        $(document).ready(() => {
+          $('#alert2').load('div');
           location.reload();
         });
-      }, 5000);
+      }, 4000);
     }
   }
 
