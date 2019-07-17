@@ -13,12 +13,7 @@
         </div>
         <input id="email" type="email" class="form-control"
         formControlName="email" placeholder="Digite seu e-mail!" required>
-      </div>
-
-      <div id="alert1" class="alert alert-danger alert-dismissible style-alert">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Erro!</strong> O campo de e-mail não pode estar vazio!
-      </div>
+      </div>      
 
       <label for="pass">Senha:</label>
       <div class="input-group mb-3">
@@ -29,14 +24,15 @@
         formControlName="password" placeholder="Digite sua senha de 6 à 8 dígitos!" required>
       </div>
 
-      <div id="alert2" class="alert alert-danger alert-dismissible style-alert">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Erro!</strong> O campo de senha não pode estar vazio!
-      </div>
-
-      <div id="alert3" class="alert alert-danger alert-dismissible style-alert">
+      <div id="alert1" class="alert alert-danger alert-dismissible style-alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Erro!</strong> Os campos de e-mail e senha não podem estar vazios!
+      </div>
+
+      <div id="alert2" class="alert alert-danger alert-dismissible style-alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Erro!</strong> Os campos de e-mail e senha não podem estar vazios, 
+        você deve digitar pelo menos 6 dígitos para a senha!
       </div>
 
       <div class="form-check checkbox">

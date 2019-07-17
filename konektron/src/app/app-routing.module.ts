@@ -83,6 +83,11 @@ const routes: Routes = [
         outlet: 'dashboard-router'
       },
       {
+        path: '*',
+        component: Page404Component,
+        outlet: 'dashboard-router'
+      },
+      {
         path: 'recovery',
         component: RecoveryComponent,
         outlet: 'dashboard-router'
