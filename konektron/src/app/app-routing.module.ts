@@ -24,6 +24,7 @@ import { ServiceComponent } from './views/pages/service/service.component';
 import { GaleryServComponent } from './views/pages/galery-serv/galery-serv.component';
 import { CategoryServComponent } from './views/pages/category-serv/category-serv.component';
 import { DashHomeComponent } from './views/dash/dash-home/dash-home.component';
+import { SignTermsComponent } from './views/sign/sign-terms/sign-terms.component';
 
 
 const routes: Routes = [
@@ -67,6 +68,10 @@ const routes: Routes = [
   {
       path: 'page404',
       component: Page404Component
+  },
+  {
+      path: 'sign-terms',
+      component: SignTermsComponent
   },
   {
     path: 'dashboard',

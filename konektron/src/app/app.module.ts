@@ -32,6 +32,7 @@ import { CategoryServComponent } from './views/pages/category-serv/category-serv
 import { GaleryServComponent } from './views/pages/galery-serv/galery-serv.component';
 import { ServiceComponent } from './views/pages/service/service.component';
 import { DashHomeComponent } from './views/dash/dash-home/dash-home.component';
+import { SignTermsComponent } from './views/sign/sign-terms/sign-terms.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { DashHomeComponent } from './views/dash/dash-home/dash-home.component';
     CategoryServComponent,
     GaleryServComponent,
     ServiceComponent,
-    DashHomeComponent
+    DashHomeComponent,
+    SignTermsComponent
   ],
   imports: [
     CommonModule,
