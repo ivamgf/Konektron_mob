@@ -1,6 +1,6 @@
 <section>
 <div class="card col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 style-card-register">
-  
+
 <img src="/assets/images/logo-konektron.png" class="style-logo container mx-auto" style="width:120px">
 <h4 class="mx-auto style-reg">Registro</h4>
   <div class="card-body">
@@ -29,7 +29,7 @@
       </div>
 
       <div class="form-group">
-        <label for="sex">Sexo:</label>        
+        <label for="sex">Sexo:</label>
         <select class="form-control" id="sex" formControlName="sex">
           <option>Masculino</option>
           <option>Feminino</option>
@@ -92,6 +92,18 @@
       <div id="alert4" class="alert alert-danger alert-dismissible style-alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Erro!</strong> Os campos de senha e confirmação de senhas devem ter de 6 à 8 dígitos!
+      </div>
+
+      <div class="form-check checkbox">
+        <label class="checkbox-inline style-label-checked">
+          <input id="terms" type="checkbox" class="form-check-input style-checked form-control"
+          formControlName="terms"> <p class="style-terms">Aceitar <a href="#" routerLink="/sign-terms">Termos</a></p>
+        </label>
+      </div>
+
+      <div id="alert5" class="alert alert-danger alert-dismissible style-alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Erro!</strong> Você deve aceitar os termos antes de prosseguir!
       </div>
 
       <br>

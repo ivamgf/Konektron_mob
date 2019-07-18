@@ -18,12 +18,14 @@ export class SignupComponent implements OnInit {
     phone: ['', [Validators.required, Validators.nullValidator]],
     email: ['', [Validators.required, Validators.nullValidator]],
     password: ['', [Validators.required, Validators.nullValidator]],
-    confirm: ['', [Validators.required, Validators.nullValidator]]
+    confirm: ['', [Validators.required, Validators.nullValidator]],
+    terms: ['']
   });
 
   public formReg: any[] = [];
   public name: string;
   public nickname: string;
+  public terms;
   public sex: string;
   public natId;
   public phone;
@@ -32,6 +34,9 @@ export class SignupComponent implements OnInit {
   public confirm: string;
   public maskNatId = [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/];
   public maskPhone = ['(', /[0-9]/, /[0-9]/, ')', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
+  public sum: number;
+  public rest: number;
+  public strCPF: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,6 +48,19 @@ export class SignupComponent implements OnInit {
     document.getElementById('alert2').style.visibility = 'hidden';
     document.getElementById('alert3').style.visibility = 'hidden';
     document.getElementById('alert4').style.visibility = 'hidden';
+    document.getElementById('alert5').style.visibility = 'hidden';
+
+    this.formRegister = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.nullValidator]],
+      nickname: ['', [Validators.required, Validators.nullValidator]],
+      sex: ['', [Validators.required, Validators.nullValidator]],
+      natId: ['', [Validators.required, Validators.nullValidator]],
+      phone: ['', [Validators.required, Validators.nullValidator]],
+      email: ['', [Validators.required, Validators.nullValidator]],
+      password: ['', [Validators.required, Validators.nullValidator]],
+      confirm: ['', [Validators.required, Validators.nullValidator]],
+      terms: ['true']
+    });
   }
   register() {
     this.formReg.push(this.formRegister.value);
@@ -54,120 +72,130 @@ export class SignupComponent implements OnInit {
     this.email = this.formReg[0].email;
     this.password = this.formReg[0].password;
     this.confirm = this.formReg[0].confirm;
-
-    console.log(this.password.length);
-
-    if ( this.name !== '' && this.nickname !== '' ) {
-      if ( this.natId !== '' && this.phone !== '' ) {
-        if ( this.sex !== '' && this.email !== '' ) {
-          if ( this.password !== '' ) {
-            if ( this.confirm !== '' ) {
-              if ( this.password.length >= 6 && this.confirm.length >= 6 ) {
-                if ( this.password === this.confirm ) {
-                  window.scrollTo(0, -500);
-                  document.getElementById('alert3').style.visibility = 'visible';
-                  document.getElementById('alert3').style.position = 'relative';
+    this.terms = this.formReg[0].terms;
+    if (this.terms === 'true') {
+      if ( this.name !== '' && this.nickname !== '' ) {
+        if ( this.natId !== '' && this.phone !== '' ) {
+          if ( this.sex !== '' && this.email !== '' ) {
+            if ( this.password !== '' ) {
+              if ( this.confirm !== '' ) {
+                if ( this.password.length >= 6 && this.confirm.length >= 6 ) {
+                  if ( this.password === this.confirm ) {
+                    window.scrollTo(0, -500);
+                    document.getElementById('alert3').style.visibility = 'visible';
+                    document.getElementById('alert3').style.position = 'relative';
+                  } else {
+                    document.getElementById('alert2').style.visibility = 'visible';
+                    document.getElementById('alert2').style.position = 'relative';
+                    setTimeout(() => {
+                      $(document).ready(() => {
+                        $('#alert2').fadeOut(3000);
+                        location.reload();
+                      });
+                    }, 3000);
+                  }
                 } else {
-                  document.getElementById('alert2').style.visibility = 'visible';
-                  document.getElementById('alert2').style.position = 'relative';
+                  document.getElementById('alert4').style.visibility = 'visible';
+                  document.getElementById('alert4').style.position = 'relative';
                   setTimeout(() => {
                     $(document).ready(() => {
-                      $('#alert2').fadeOut(3000);
+                      $('#alert4').fadeOut(3000);
                       location.reload();
                     });
                   }, 3000);
                 }
-              } else {
-                document.getElementById('alert4').style.visibility = 'visible';
-                document.getElementById('alert4').style.position = 'relative';
-                setTimeout(() => {
-                  $(document).ready(() => {
-                    $('#alert4').fadeOut(3000);
-                    location.reload();
-                  });
-                }, 3000);
               }
             }
           }
         }
       }
-    }
-    if ( this.name === '' ) {
-      document.getElementById('alert1').style.visibility = 'visible';
-      document.getElementById('alert1').style.position = 'relative';
+      if ( this.name === '' ) {
+        document.getElementById('alert1').style.visibility = 'visible';
+        document.getElementById('alert1').style.position = 'relative';
+        setTimeout(() => {
+          $(document).ready(() => {
+            $('#alert1').fadeOut(3000);
+            location.reload();
+          });
+        }, 3000);
+      }
+      if ( this.nickname === '' ) {
+        document.getElementById('alert1').style.visibility = 'visible';
+        document.getElementById('alert1').style.position = 'relative';
+        setTimeout(() => {
+          $(document).ready(() => {
+            $('#alert1').fadeOut(3000);
+            location.reload();
+          });
+        }, 3000);
+      }
+      if ( this.natId === '' ) {
+        document.getElementById('alert1').style.visibility = 'visible';
+        document.getElementById('alert1').style.position = 'relative';
+        setTimeout(() => {
+          $(document).ready(() => {
+            $('#alert1').fadeOut(3000);
+            location.reload();
+          });
+        }, 3000);
+      }
+      this.validCpf();
+      if ( this.phone === '' ) {
+        document.getElementById('alert1').style.visibility = 'visible';
+        document.getElementById('alert1').style.position = 'relative';
+        setTimeout(() => {
+          $(document).ready(() => {
+            $('#alert1').fadeOut(3000);
+            location.reload();
+          });
+        }, 3000);
+      }
+      if ( this.sex === '' ) {
+        document.getElementById('alert1').style.visibility = 'visible';
+        document.getElementById('alert1').style.position = 'relative';
+        setTimeout(() => {
+          $(document).ready(() => {
+            $('#alert1').fadeOut(3000);
+            location.reload();
+          });
+        }, 3000);
+      }
+      if ( this.email === '' ) {
+        document.getElementById('alert1').style.visibility = 'visible';
+        document.getElementById('alert1').style.position = 'relative';
+        setTimeout(() => {
+          $(document).ready(() => {
+            $('#alert1').fadeOut(3000);
+            location.reload();
+          });
+        }, 3000);
+      }
+      if ( this.password === '' ) {
+        document.getElementById('alert1').style.visibility = 'visible';
+        document.getElementById('alert1').style.position = 'relative';
+        setTimeout(() => {
+          $(document).ready(() => {
+            $('#alert1').fadeOut(3000);
+            location.reload();
+          });
+        }, 3000);
+      }
+      if ( this.confirm === '' ) {
+        document.getElementById('alert1').style.visibility = 'visible';
+        document.getElementById('alert1').style.position = 'relative';
+        setTimeout(() => {
+          $(document).ready(() => {
+            $('#alert1').fadeOut(3000);
+            location.reload();
+          });
+        }, 3000);
+      }
+    } else {
+      document.getElementById('alert5').style.visibility = 'visible';
+      document.getElementById('alert5').style.position = 'relative';
       setTimeout(() => {
         $(document).ready(() => {
-          $('#alert1').fadeOut(3000);
-          location.reload();
-        });
-      }, 3000);
-    }
-    if ( this.nickname === '' ) {
-      document.getElementById('alert1').style.visibility = 'visible';
-      document.getElementById('alert1').style.position = 'relative';
-      setTimeout(() => {
-        $(document).ready(() => {
-          $('#alert1').fadeOut(3000);
-          location.reload();
-        });
-      }, 3000);
-    }
-    if ( this.natId === '' ) {
-      document.getElementById('alert1').style.visibility = 'visible';
-      document.getElementById('alert1').style.position = 'relative';
-      setTimeout(() => {
-        $(document).ready(() => {
-          $('#alert1').fadeOut(3000);
-          location.reload();
-        });
-      }, 3000);
-    }
-    if ( this.phone === '' ) {
-      document.getElementById('alert1').style.visibility = 'visible';
-      document.getElementById('alert1').style.position = 'relative';
-      setTimeout(() => {
-        $(document).ready(() => {
-          $('#alert1').fadeOut(3000);
-          location.reload();
-        });
-      }, 3000);
-    }
-    if ( this.sex === '' ) {
-      document.getElementById('alert1').style.visibility = 'visible';
-      document.getElementById('alert1').style.position = 'relative';
-      setTimeout(() => {
-        $(document).ready(() => {
-          $('#alert1').fadeOut(3000);
-          location.reload();
-        });
-      }, 3000);
-    }
-    if ( this.email === '' ) {
-      document.getElementById('alert1').style.visibility = 'visible';
-      document.getElementById('alert1').style.position = 'relative';
-      setTimeout(() => {
-        $(document).ready(() => {
-          $('#alert1').fadeOut(3000);
-          location.reload();
-        });
-      }, 3000);
-    }
-    if ( this.password === '' ) {
-      document.getElementById('alert1').style.visibility = 'visible';
-      document.getElementById('alert1').style.position = 'relative';
-      setTimeout(() => {
-        $(document).ready(() => {
-          $('#alert1').fadeOut(3000);
-          location.reload();
-        });
-      }, 3000);
-    }
-    if ( this.confirm === '' ) {
-      document.getElementById('alert1').style.visibility = 'visible';
-      document.getElementById('alert1').style.position = 'relative';
-      setTimeout(() => {
-        $(document).ready(() => {
-          $('#alert1').fadeOut(3000);
+          $('#alert5').fadeOut(3000);
           location.reload();
         });
       }, 3000);
@@ -175,6 +203,47 @@ export class SignupComponent implements OnInit {
   }
   backSignin() {
     this.router.navigate(['/signin']);
+  }
+  validCpf() {
+    this.formReg.push(this.formRegister.value);
+    this.natId = this.formReg[0].natId;
+    this.strCPF = this.natId;
+    this.sum = 0;
+    if ((this.strCPF === '00000000000') ||
+        (this.strCPF === '11111111111') ||
+        (this.strCPF === '22222222222') ||
+        (this.strCPF === '33333333333') ||
+        (this.strCPF === '44444444444') ||
+        (this.strCPF === '55555555555') ||
+        (this.strCPF === '66666666666') ||
+        (this.strCPF === '77777777777') ||
+        (this.strCPF === '88888888888') ||
+        (this.strCPF === '99999999999')) {
+      return false;
+    }
+    let i: number;
+    for (i = 1; i <= 9; i++) {
+      this.sum = this.sum + parseInt( this.strCPF.substr(i - 1, i), 10 ) * (11 - i);
+      this.rest = (this.sum * 10) % 11;
+      if ((this.rest === 10) || this.rest === 11) {
+        this.rest = 0;
+      }
+      if (this.rest !== parseInt( this.strCPF.substr(9, 10), 10)) {
+        return false;
+      }
+    }
+    this.sum = 0;
+    for (i = 1; i <= 10; i++) {
+      this.sum = this.sum + parseInt( this.strCPF.substr(i - 1, i), 10 ) * (12 - i);
+      this.rest = (this.sum * 10) % 11;
+      if ((this.rest === 10) || this.rest === 11) {
+        this.rest = 0;
+      }
+      if (this.rest !== parseInt( this.strCPF.substr(10, 11), 10)) {
+        return false;
+      }
+      return true;
+    }
   }
 
 }
