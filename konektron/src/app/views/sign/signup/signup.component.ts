@@ -37,6 +37,8 @@ export class SignupComponent implements OnInit {
   public sum: number;
   public rest: number;
   public strCPF: string;
+  public statusCPF;
+  public auxCPF;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -68,7 +70,9 @@ export class SignupComponent implements OnInit {
     this.nickname = this.formReg[0].nickname;
     this.sex = this.formReg[0].sex;
     this.natId = this.formReg[0].natId;
+    this.natId = this.natId.replace(/\D/g, '');
     this.phone = this.formReg[0].phone;
+    this.phone = this.phone.replace(/\D/g, '');
     this.email = this.formReg[0].email;
     this.password = this.formReg[0].password;
     this.confirm = this.formReg[0].confirm;
@@ -205,8 +209,6 @@ export class SignupComponent implements OnInit {
     this.router.navigate(['/signin']);
   }
   validCpf() {
-    this.formReg.push(this.formRegister.value);
-    this.natId = this.formReg[0].natId;
     this.strCPF = this.natId;
     this.sum = 0;
     if ((this.strCPF === '00000000000') ||
@@ -219,31 +221,29 @@ export class SignupComponent implements OnInit {
         (this.strCPF === '77777777777') ||
         (this.strCPF === '88888888888') ||
         (this.strCPF === '99999999999')) {
+      this.statusCPF = false;
+      console.log('valid1:', this.statusCPF);
       return false;
     }
-    let i: number;
-    for (i = 1; i <= 9; i++) {
-      this.sum = this.sum + parseInt( this.strCPF.substr(i - 1, i), 10 ) * (11 - i);
-      this.rest = (this.sum * 10) % 11;
+    if (this.strCPF) {
+      let i: number;
+      const vectorRest: any[] = [];
+      for (i = 1; i <= (this.strCPF.length - 2); i++) {
+        this.auxCPF = parseInt( this.strCPF.substr(i - 1, i), 10 ) * (11 - i);
+        this.sum = this.sum + this.auxCPF;
+        vectorRest.push((this.sum * 10) % 11);
+        this.rest = vectorRest[8];
+      }
       if ((this.rest === 10) || this.rest === 11) {
         this.rest = 0;
-      }
-      if (this.rest !== parseInt( this.strCPF.substr(9, 10), 10)) {
+        }
+      if (this.rest !== parseInt( this.strCPF.substr(8, 1), 10)) {
+        this.statusCPF = false;
+        console.log('valid2:', this.statusCPF);
         return false;
+      } else {
+        console.log('CPF Válido!');
       }
-    }
-    this.sum = 0;
-    for (i = 1; i <= 10; i++) {
-      this.sum = this.sum + parseInt( this.strCPF.substr(i - 1, i), 10 ) * (12 - i);
-      this.rest = (this.sum * 10) % 11;
-      if ((this.rest === 10) || this.rest === 11) {
-        this.rest = 0;
-      }
-      if (this.rest !== parseInt( this.strCPF.substr(10, 11), 10)) {
-        return false;
-      }
-      return true;
     }
   }
-
 }
