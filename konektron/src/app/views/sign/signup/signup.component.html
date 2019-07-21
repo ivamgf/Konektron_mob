@@ -8,7 +8,6 @@
     <div id="alert3" class="alert alert-success alert-dismissible style-alert">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>Parabéns!</strong> Cadastro Realizado com Sucesso!<br>
-      <button type="button" class="btn btn-success btn-block" (click)="backSignin()">Ir para a página de Login</button>
     </div>
 
     <form [formGroup]="formRegister">
@@ -41,7 +40,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fas fa-user"></i></span>
         </div>
-        <input type="text" [textMask]="{mask: maskNatId}" class="form-control" id="natId" formControlName="natId" required>
+        <input type="text" [textMask]="{mask: maskNatId}" class="form-control" id="natId" formControlName="natId"  required>
       </div>
 
       <label for="phone">Telefone:</label>
@@ -92,6 +91,11 @@
       <div id="alert4" class="alert alert-danger alert-dismissible style-alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Erro!</strong> Os campos de senha e confirmação de senhas devem ter de 6 à 8 dígitos!
+      </div>
+
+      <div id="alert6" class="alert alert-danger alert-dismissible style-alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Erro!</strong> CPF Inválido, Favor Digitar um CPF Válido!!
       </div>
 
       <div class="form-check checkbox">
