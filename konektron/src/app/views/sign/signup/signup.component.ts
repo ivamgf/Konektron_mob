@@ -37,7 +37,6 @@ export class SignupComponent implements OnInit {
   public sum: number;
   public rest: number;
   public strCPF: string;
-  public statusCPF;
   public auxCPF;
 
   constructor(
@@ -51,6 +50,7 @@ export class SignupComponent implements OnInit {
     document.getElementById('alert3').style.visibility = 'hidden';
     document.getElementById('alert4').style.visibility = 'hidden';
     document.getElementById('alert5').style.visibility = 'hidden';
+    document.getElementById('alert6').style.visibility = 'hidden';
 
     this.formRegister = this.formBuilder.group({
       name: ['', [Validators.required, Validators.nullValidator]],
@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit {
       terms: ['true']
     });
   }
-  register() {
+  completedFields() {
     this.formReg.push(this.formRegister.value);
     this.name = this.formReg[0].name;
     this.nickname = this.formReg[0].nickname;
@@ -77,129 +77,93 @@ export class SignupComponent implements OnInit {
     this.password = this.formReg[0].password;
     this.confirm = this.formReg[0].confirm;
     this.terms = this.formReg[0].terms;
-    if (this.terms === 'true') {
-      if ( this.name !== '' && this.nickname !== '' ) {
-        if ( this.natId !== '' && this.phone !== '' ) {
-          if ( this.sex !== '' && this.email !== '' ) {
-            if ( this.password !== '' ) {
-              if ( this.confirm !== '' ) {
-                if ( this.password.length >= 6 && this.confirm.length >= 6 ) {
-                  if ( this.password === this.confirm ) {
-                    window.scrollTo(0, -500);
-                    document.getElementById('alert3').style.visibility = 'visible';
-                    document.getElementById('alert3').style.position = 'relative';
+  }
+  register() {
+    this.completedFields();
+    this.validCpf();
+    if (this.validCpf()) {
+      if (this.terms === 'true') {
+        if ( this.name !== '' && this.nickname !== '' ) {
+          if ( this.natId !== '' && this.phone !== '' ) {
+            if ( this.sex !== '' && this.email !== '' ) {
+              if ( this.password !== '' ) {
+                if ( this.confirm !== '' ) {
+                  if ( this.password.length >= 6 && this.confirm.length >= 6 ) {
+                    if ( this.password === this.confirm ) {
+                      window.scrollTo(0, -500);
+                      document.getElementById('alert3').style.visibility = 'visible';
+                      document.getElementById('alert3').style.position = 'relative';
+                      setTimeout(() => {
+                        $(document).ready(() => {
+                          $('#alert3').fadeOut(3000);
+                          this.backSignin();
+                        });
+                      }, 3000);
+                    } else {
+                      document.getElementById('alert2').style.visibility = 'visible';
+                      document.getElementById('alert2').style.position = 'relative';
+                      setTimeout(() => {
+                        $(document).ready(() => {
+                          $('#alert2').fadeOut(3000);
+                          location.reload();
+                        });
+                      }, 3000);
+                    }
                   } else {
-                    document.getElementById('alert2').style.visibility = 'visible';
-                    document.getElementById('alert2').style.position = 'relative';
+                    document.getElementById('alert4').style.visibility = 'visible';
+                    document.getElementById('alert4').style.position = 'relative';
                     setTimeout(() => {
                       $(document).ready(() => {
-                        $('#alert2').fadeOut(3000);
+                        $('#alert4').fadeOut(3000);
                         location.reload();
                       });
                     }, 3000);
                   }
-                } else {
-                  document.getElementById('alert4').style.visibility = 'visible';
-                  document.getElementById('alert4').style.position = 'relative';
-                  setTimeout(() => {
-                    $(document).ready(() => {
-                      $('#alert4').fadeOut(3000);
-                      location.reload();
-                    });
-                  }, 3000);
                 }
               }
             }
           }
         }
-      }
-      if ( this.name === '' ) {
-        document.getElementById('alert1').style.visibility = 'visible';
-        document.getElementById('alert1').style.position = 'relative';
+        if ( this.name === '' ) {
+          this.warning();
+        }
+        if ( this.nickname === '' ) {
+          this.warning();
+        }
+        if ( this.natId === '' ) {
+          this.warning();
+        }
+        if ( this.phone === '' ) {
+          this.warning();
+        }
+        if ( this.sex === '' ) {
+          this.warning();
+        }
+        if ( this.email === '' ) {
+          this.warning();
+        }
+        if ( this.password === '' ) {
+          this.warning();
+        }
+        if ( this.confirm === '' ) {
+          this.warning();
+        }
+      } else {
+        document.getElementById('alert5').style.visibility = 'visible';
+        document.getElementById('alert5').style.position = 'relative';
         setTimeout(() => {
           $(document).ready(() => {
-            $('#alert1').fadeOut(3000);
-            location.reload();
-          });
-        }, 3000);
-      }
-      if ( this.nickname === '' ) {
-        document.getElementById('alert1').style.visibility = 'visible';
-        document.getElementById('alert1').style.position = 'relative';
-        setTimeout(() => {
-          $(document).ready(() => {
-            $('#alert1').fadeOut(3000);
-            location.reload();
-          });
-        }, 3000);
-      }
-      if ( this.natId === '' ) {
-        document.getElementById('alert1').style.visibility = 'visible';
-        document.getElementById('alert1').style.position = 'relative';
-        setTimeout(() => {
-          $(document).ready(() => {
-            $('#alert1').fadeOut(3000);
-            location.reload();
-          });
-        }, 3000);
-      }
-      this.validCpf();
-      if ( this.phone === '' ) {
-        document.getElementById('alert1').style.visibility = 'visible';
-        document.getElementById('alert1').style.position = 'relative';
-        setTimeout(() => {
-          $(document).ready(() => {
-            $('#alert1').fadeOut(3000);
-            location.reload();
-          });
-        }, 3000);
-      }
-      if ( this.sex === '' ) {
-        document.getElementById('alert1').style.visibility = 'visible';
-        document.getElementById('alert1').style.position = 'relative';
-        setTimeout(() => {
-          $(document).ready(() => {
-            $('#alert1').fadeOut(3000);
-            location.reload();
-          });
-        }, 3000);
-      }
-      if ( this.email === '' ) {
-        document.getElementById('alert1').style.visibility = 'visible';
-        document.getElementById('alert1').style.position = 'relative';
-        setTimeout(() => {
-          $(document).ready(() => {
-            $('#alert1').fadeOut(3000);
-            location.reload();
-          });
-        }, 3000);
-      }
-      if ( this.password === '' ) {
-        document.getElementById('alert1').style.visibility = 'visible';
-        document.getElementById('alert1').style.position = 'relative';
-        setTimeout(() => {
-          $(document).ready(() => {
-            $('#alert1').fadeOut(3000);
-            location.reload();
-          });
-        }, 3000);
-      }
-      if ( this.confirm === '' ) {
-        document.getElementById('alert1').style.visibility = 'visible';
-        document.getElementById('alert1').style.position = 'relative';
-        setTimeout(() => {
-          $(document).ready(() => {
-            $('#alert1').fadeOut(3000);
+            $('#alert5').fadeOut(3000);
             location.reload();
           });
         }, 3000);
       }
     } else {
-      document.getElementById('alert5').style.visibility = 'visible';
-      document.getElementById('alert5').style.position = 'relative';
+      document.getElementById('alert6').style.visibility = 'visible';
+      document.getElementById('alert6').style.position = 'relative';
       setTimeout(() => {
         $(document).ready(() => {
-          $('#alert5').fadeOut(3000);
+          $('#alert6').fadeOut(3000);
           location.reload();
         });
       }, 3000);
@@ -207,6 +171,16 @@ export class SignupComponent implements OnInit {
   }
   backSignin() {
     this.router.navigate(['/signin']);
+  }
+  warning() {
+    document.getElementById('alert1').style.visibility = 'visible';
+    document.getElementById('alert1').style.position = 'relative';
+    setTimeout(() => {
+      $(document).ready(() => {
+        $('#alert1').fadeOut(3000);
+        location.reload();
+      });
+    }, 3000);
   }
   validCpf() {
     this.strCPF = this.natId;
@@ -221,8 +195,6 @@ export class SignupComponent implements OnInit {
         (this.strCPF === '77777777777') ||
         (this.strCPF === '88888888888') ||
         (this.strCPF === '99999999999')) {
-      this.statusCPF = false;
-      console.log('valid1:', this.statusCPF);
       return false;
     }
     if (this.strCPF) {
@@ -238,11 +210,7 @@ export class SignupComponent implements OnInit {
         this.rest = 0;
         }
       if (this.rest !== parseInt( this.strCPF.substr(9, 1), 10)) {
-        this.statusCPF = false;
-        console.log('valid2:', this.statusCPF);
         return false;
-      } else {
-        console.log('CPF Válido!');
       }
       this.sum = 0;
       const vectorRest2: any[] = [];
@@ -256,11 +224,7 @@ export class SignupComponent implements OnInit {
         this.rest = 0;
       }
       if (this.rest !== parseInt( this.strCPF.substr(10, 1), 10)) {
-        this.statusCPF = false;
-        console.log('valid3:', this.statusCPF);
         return false;
-      } else {
-        console.log('CPF Válido!');
       }
       return true;
     }
