@@ -228,8 +228,8 @@ export class SignupComponent implements OnInit {
     if (this.strCPF) {
       let i: number;
       const vectorRest: any[] = [];
-      for (i = 1; i <= (this.strCPF.length - 2); i++) {
-        this.auxCPF = parseInt( this.strCPF.substr(i - 1, i), 10 ) * (11 - i);
+      for (i = 1; i <= 9; i++) {
+        this.auxCPF = parseInt( this.strCPF.substr(i - 1, 1), 10 ) * (11 - i);
         this.sum = this.sum + this.auxCPF;
         vectorRest.push((this.sum * 10) % 11);
         this.rest = vectorRest[8];
@@ -237,23 +237,25 @@ export class SignupComponent implements OnInit {
       if ((this.rest === 10) || this.rest === 11) {
         this.rest = 0;
         }
-      if (this.rest !== parseInt( this.strCPF.substr(8, 1), 10)) {
+      if (this.rest !== parseInt( this.strCPF.substr(9, 1), 10)) {
         this.statusCPF = false;
         console.log('valid2:', this.statusCPF);
         return false;
       } else {
         console.log('CPF Válido!');
       }
-      for (i = 1; i <= (this.strCPF.length - 1); i++) {
-        this.auxCPF = parseInt( this.strCPF.substr(i - 1, i), 10 ) * (12 - i);
+      this.sum = 0;
+      const vectorRest2: any[] = [];
+      for (i = 1; i <= 10; i++) {
+        this.auxCPF = parseInt( this.strCPF.substr(i - 1, 1), 10 ) * (12 - i);
         this.sum = this.sum + this.auxCPF;
-        vectorRest.push((this.sum * 10) % 11);
-        this.rest = vectorRest[8];
+        vectorRest2.push((this.sum * 10) % 11);
+        this.rest = vectorRest2[9];
       }
       if ((this.rest === 10) || this.rest === 11) {
         this.rest = 0;
       }
-      if (this.rest !== parseInt( this.strCPF.substr(9, 1), 10)) {
+      if (this.rest !== parseInt( this.strCPF.substr(10, 1), 10)) {
         this.statusCPF = false;
         console.log('valid3:', this.statusCPF);
         return false;
