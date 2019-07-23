@@ -31,6 +31,7 @@ export class ForgotComponent implements OnInit {
     document.getElementById('alert4').style.visibility = 'hidden';
     document.getElementById('alert5').style.visibility = 'hidden';
   }
+  // Function forgot password
   forgot() {
     this.formRecovery.push(this.formForgot.value);
     this.password = this.formRecovery[0].password;
@@ -84,8 +85,10 @@ export class ForgotComponent implements OnInit {
       }
     }
   }
+  // Function forgot password
+  // Function back to the login
   backSignin() {
     this.router.navigate(['/signin']);
   }
-
+  // Function back to the login
 }

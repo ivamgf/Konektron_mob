@@ -45,13 +45,16 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // hidden alerts
     document.getElementById('alert1').style.visibility = 'hidden';
     document.getElementById('alert2').style.visibility = 'hidden';
     document.getElementById('alert3').style.visibility = 'hidden';
     document.getElementById('alert4').style.visibility = 'hidden';
     document.getElementById('alert5').style.visibility = 'hidden';
     document.getElementById('alert6').style.visibility = 'hidden';
+    // hidden alerts
 
+    // Block form
     this.formRegister = this.formBuilder.group({
       name: ['', [Validators.required, Validators.nullValidator]],
       nickname: ['', [Validators.required, Validators.nullValidator]],
@@ -63,7 +66,9 @@ export class SignupComponent implements OnInit {
       confirm: ['', [Validators.required, Validators.nullValidator]],
       terms: ['true']
     });
+    // Block form
   }
+  // Function completed fields
   completedFields() {
     this.formReg.push(this.formRegister.value);
     this.name = this.formReg[0].name;
@@ -78,6 +83,9 @@ export class SignupComponent implements OnInit {
     this.confirm = this.formReg[0].confirm;
     this.terms = this.formReg[0].terms;
   }
+  // Function completed fields
+
+  // Function register
   register() {
     this.completedFields();
     this.validCpf();
@@ -169,9 +177,14 @@ export class SignupComponent implements OnInit {
       }, 3000);
     }
   }
+  // Function register
+
+  // Function back to the login
   backSignin() {
     this.router.navigate(['/signin']);
   }
+  // Function back to the login
+  // Function alerts
   warning() {
     document.getElementById('alert1').style.visibility = 'visible';
     document.getElementById('alert1').style.position = 'relative';
@@ -182,6 +195,8 @@ export class SignupComponent implements OnInit {
       });
     }, 3000);
   }
+  // Function alerts
+  // Function valid cpf
   validCpf() {
     this.strCPF = this.natId;
     this.sum = 0;
@@ -229,4 +244,5 @@ export class SignupComponent implements OnInit {
       return true;
     }
   }
+  // Function valid cpf
 }
