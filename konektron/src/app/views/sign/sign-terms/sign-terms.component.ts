@@ -14,7 +14,9 @@ export class SignTermsComponent implements OnInit {
 
   ngOnInit() {
   }
+  // Function back to the register
   backSignup() {
     this.router.navigate(['/signup']);
   }
+  // Function back to the register
 }

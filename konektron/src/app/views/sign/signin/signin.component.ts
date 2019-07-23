@@ -34,9 +34,12 @@ export class SigninComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // hidden alerts
     document.getElementById('alert1').style.visibility = 'hidden';
     document.getElementById('alert2').style.visibility = 'hidden';
+    // hidden alerts
 
+    // Verify status remember
     this.statusRemember = localStorage.getItem('remember');
     if ( this.statusRemember === 'true' ) {
       this.user = localStorage.getItem('user');
@@ -56,6 +59,9 @@ export class SigninComponent implements OnInit {
       });
     }
   }
+  // Verify status remember
+
+  // function login
   login() {
     this.formLogin.push(this.formSignin.value);
     this.email = this.formLogin[0].email;
@@ -81,6 +87,9 @@ export class SigninComponent implements OnInit {
       this.passValid();
     }
   }
+  // function login
+
+  // Valid E-mail
   emailValid() {
     if ( this.email === '' ) {
       document.getElementById('alert1').style.visibility = 'visible';
@@ -93,6 +102,9 @@ export class SigninComponent implements OnInit {
       }, 3000);
     }
   }
+  // Valid E-mail
+
+  // Valid password
   passValid() {
     document.getElementById('alert2').style.visibility = 'visible';
     document.getElementById('alert2').style.position = 'relative';
@@ -103,5 +115,6 @@ export class SigninComponent implements OnInit {
       });
     }, 3000);
   }
+  // Valid password
 }
 
