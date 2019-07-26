@@ -75,80 +75,65 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
-    children: [
-      {
-        path: '',
-        component: DashHomeComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: '*',
-        component: Page404Component,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'recovery',
-        component: RecoveryComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'orders',
-        component: OrdersComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'adresses',
-        component: AdressesComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'cards',
-        component: CardsComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'credits',
-        component: CreditsComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'service',
-        component: ServiceComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'galery-serv',
-        component: GaleryServComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'category-serv',
-        component: CategoryServComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'cart',
-        component: CartComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'checkout-custom',
-        component: CheckoutCustomComponent,
-        outlet: 'dashboard-router'
-      },
-      {
-        path: 'checkout-confirm',
-        component: CheckoutConfirmComponent,
-        outlet: 'dashboard-router'
-      }
-    ]
+    component: DashboardComponent
+  },
+  {
+    path: 'dashboard-home',
+    component: DashHomeComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
+  },
+  {
+    path: 'recovery',
+    component: RecoveryComponent
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent
+  },
+  {
+    path: 'adresses',
+    component: AdressesComponent
+  },
+  {
+    path: 'cards',
+    component: CardsComponent
+  },
+  {
+    path: 'credits',
+    component: CreditsComponent
+  },
+  {
+    path: 'service',
+    component: ServiceComponent
+  },
+  {
+    path: 'galery-serv',
+    component: GaleryServComponent
+  },
+  {
+    path: 'category-serv',
+    component: CategoryServComponent
+  },
+  {
+    path: 'cart',
+    component: CartComponent
+  },
+  {
+    path: 'checkout-custom',
+    component: CheckoutCustomComponent
+  },
+  {
+    path: 'checkout-confirm',
+    component: CheckoutConfirmComponent
+  },
+  {
+    path: '**',
+    component: Page404Component
   }
+
 ];
 
 @NgModule({

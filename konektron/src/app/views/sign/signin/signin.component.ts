@@ -72,7 +72,10 @@ export class SigninComponent implements OnInit {
     if ( this.password.length >= 6 ) {
       if ( this.email !== '' && this.password !== '' ) {
         localStorage.setItem( 'auth', 'true' );
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard-home']);
+        $(document).ready( () => {
+          location.reload();
+        });
         if ( this.remember === true ) {
           localStorage.setItem( 'remember', 'true' );
           localStorage.setItem( 'user', this.encodeEmail );
